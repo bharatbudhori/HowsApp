@@ -111,7 +111,7 @@ class AuthRepository {
         uid: uid,
         profilePic: photoUrl,
         isOnline: true,
-        phoneNumber: auth.currentUser!.uid,
+        phoneNumber: auth.currentUser!.phoneNumber!,
         groupId: [],
       );
 
@@ -126,5 +126,13 @@ class AuthRepository {
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
     }
+  }
+
+  Stream<UserModel> userData(String userId) {
+    return firestore.collection('users').doc(userId).snapshots().map(
+          (snapshot) => UserModel.fromMap(
+            snapshot.data()!,
+          ),
+        );
   }
 }

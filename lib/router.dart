@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:howsapp/features/select_contacts/screens/select_contact_screen.dart';
+import 'package:howsapp/features/chat/screens/mobile_chat_screen.dart';
 
 import 'common/widgets/error.dart';
 import 'features/auth/screens/login_screen.dart';
@@ -29,6 +30,17 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case SelectContactScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const SelectContactScreen(),
+      );
+
+    case MobileChatScreen.routeName:
+      final arguments = settings.arguments as Map<String, dynamic>;
+      final name = arguments['name'];
+      final uid = arguments['uid'];
+      return MaterialPageRoute(
+        builder: (context) => MobileChatScreen(
+          name: name,
+          uid: uid,
+        ),
       );
 
     default:

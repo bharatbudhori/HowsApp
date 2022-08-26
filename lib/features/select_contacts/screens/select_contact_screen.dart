@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:howsapp/colors.dart';
 import 'package:howsapp/common/widgets/error.dart';
@@ -8,6 +9,13 @@ import 'package:howsapp/features/select_contacts/controller/select_contact_contr
 class SelectContactScreen extends ConsumerWidget {
   static const String routeName = '/select_contact';
   const SelectContactScreen({Key? key}) : super(key: key);
+
+  void selectContact(
+      WidgetRef ref, Contact selectedContact, BuildContext context) {
+    ref
+        .read(selectContactControllerProvider)
+        .selectContact(selectedContact, context);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,22 +48,25 @@ class SelectContactScreen extends ConsumerWidget {
               itemCount: contactList.length,
               itemBuilder: (context, index) {
                 final contact = contactList[index];
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: ListTile(
-                    title: Text(
-                      contact.displayName,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        //fontWeight: FontWeight.bold,
+                return InkWell(
+                  onTap: () => selectContact(ref, contact, context),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: ListTile(
+                      title: Text(
+                        contact.displayName,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          //fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      leading: contact.photo == null
+                          ? null
+                          : CircleAvatar(
+                              radius: 30,
+                              backgroundImage: MemoryImage(contact.photo!),
+                            ),
                     ),
-                    leading: contact.photo == null
-                        ? null
-                        : CircleAvatar(
-                            radius: 30,
-                            backgroundImage: MemoryImage(contact.photo!),
-                          ),
                   ),
                 );
               },
