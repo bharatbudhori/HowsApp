@@ -27,6 +27,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void pickCountry() {
     showCountryPicker(
       context: context,
+      // ignore: no_leading_underscores_for_local_identifiers
       onSelect: (Country _country) {
         setState(() {
           country = _country;

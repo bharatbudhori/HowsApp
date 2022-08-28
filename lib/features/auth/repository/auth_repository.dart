@@ -76,6 +76,7 @@ class AuthRepository {
         smsCode: userOTP,
       );
       await auth.signInWithCredential(credential);
+      // ignore: use_build_context_synchronously
       Navigator.pushNamedAndRemoveUntil(
         context,
         UserInformationScreen.routeName,
@@ -116,6 +117,7 @@ class AuthRepository {
       );
 
       await firestore.collection('users').doc(uid).set(user.toMap());
+      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
@@ -134,5 +136,11 @@ class AuthRepository {
             snapshot.data()!,
           ),
         );
+  }
+
+  void setUserState(bool isOnline) async {
+    await firestore.collection('users').doc(auth.currentUser!.uid).update({
+      'isOnline': isOnline,
+    });
   }
 }

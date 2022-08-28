@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:howsapp/features/auth/controller/auth_controller.dart';
 import 'package:howsapp/features/chat/repository/chat_repository.dart';
+import 'package:howsapp/models/chat_contact.dart';
+import 'package:howsapp/models/message.dart';
 
 final chatControllerProvider = Provider(
   (ref) {
@@ -21,6 +23,14 @@ class ChatController {
     required this.chatRepository,
     required this.ref,
   });
+
+  Stream<List<ChatContact>> chatContacts() {
+    return chatRepository.getChatContacts();
+  }
+
+  Stream<List<Message>> chatStream(String recieverUserId) {
+    return chatRepository.getMessages(recieverUserId);
+  }
 
   void sendTextMessage(
     BuildContext context,

@@ -4,8 +4,7 @@ import 'package:howsapp/colors.dart';
 import 'package:howsapp/common/widgets/loader.dart';
 import 'package:howsapp/features/auth/controller/auth_controller.dart';
 import 'package:howsapp/features/chat/widgets/bottom_chat_field.dart';
-import 'package:howsapp/info.dart';
-import 'package:howsapp/widgets/chat_list.dart';
+import 'package:howsapp/features/chat/widgets/chat_list.dart';
 
 import '../../../models/user_model.dart';
 
@@ -61,8 +60,10 @@ class MobileChatScreen extends ConsumerWidget {
       ),
       body: Column(
         children: [
-          const Expanded(
-            child: ChatList(),
+          Expanded(
+            child: ChatList(
+              recieverUserId: uid,
+            ),
           ),
           BottomChatField(receiverUserId: uid),
         ],
