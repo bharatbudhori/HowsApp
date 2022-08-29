@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:howsapp/common/widgets/loader.dart';
 import 'package:howsapp/features/chat/controller/chat_controller.dart';
 import 'package:howsapp/models/message.dart';
-import 'package:howsapp/widgets/my_message_card.dart';
-import 'package:howsapp/widgets/sender_message_card.dart';
+import 'package:howsapp/features/chat/widgets/my_message_card.dart';
+import 'package:howsapp/features/chat/widgets/sender_message_card.dart';
 import 'package:intl/intl.dart';
 
 class ChatList extends ConsumerStatefulWidget {
@@ -17,7 +17,7 @@ class ChatList extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  ConsumerState<ChatList> createState() => _ChatListState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ChatListState();
 }
 
 class _ChatListState extends ConsumerState<ChatList> {
@@ -56,11 +56,13 @@ class _ChatListState extends ConsumerState<ChatList> {
                 return MyMessageCard(
                   message: messageData.text,
                   date: timeSent,
+                  type: messageData.type,
                 );
               }
               return SenderMessageCard(
                 message: messageData.text,
                 date: timeSent,
+                type: messageData.type,
               );
             },
           );

@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:howsapp/colors.dart';
@@ -12,9 +13,23 @@ import 'features/landing/screens/landing_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      //options: DefaultFirebaseOptions.currentPlatform,
-      );
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyBFIq02aGpVj0QE9L3H6ycH1tRAQkDGqb0",
+        authDomain: "howsapp-53637.firebaseapp.com",
+        projectId: "howsapp-53637",
+        storageBucket: "howsapp-53637.appspot.com",
+        messagingSenderId: "415644467601",
+        appId: "1:415644467601:web:b5882c48b8bb436eb8da30",
+        measurementId: "G-VPEGD70H2F",
+      ),
+    );
+  } else {
+    await Firebase.initializeApp(
+        //options: DefaultFirebaseOptions.currentPlatform,
+        );
+  }
   runApp(
     const ProviderScope(
       child: MyApp(),
