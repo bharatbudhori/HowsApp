@@ -1,5 +1,6 @@
 import 'dart:io';
 
+//import 'package:enough_giphy_flutter/enough_giphy_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -44,3 +45,17 @@ Future<File?> pickViedeoFromGallery(BuildContext context) async {
 
   return viedeo;
 }
+
+/*Future<GiphyGif?> pickGIF(BuildContext context) async {
+  // moar6jWnjHdl8AJdGKSXKXBsFB1ox2Bj
+  GiphyGif? gif;
+  try {
+    gif = await Giphy.getGif(
+      context: context,
+      apiKey: 'moar6jWnjHdl8AJdGKSXKXBsFB1ox2Bj',
+    );
+  } catch (e) {
+    showSnackBar(context: context, content: e.toString());
+  }
+  return gif;
+}*/

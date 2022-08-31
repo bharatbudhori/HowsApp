@@ -235,7 +235,7 @@ class ChatRepository {
           contactMsg = '🖼️ Photo';
           break;
         case MessageEnum.video:
-          contactMsg = '📹 Viedeo';
+          contactMsg = '📹 Video';
           break;
         case MessageEnum.audio:
           contactMsg = '🎙️ Audio';
@@ -264,6 +264,45 @@ class ChatRepository {
         username: senderUserData.name,
         receiverUsername: recieverUserData.name,
         messageType: messageEnum,
+      );
+    } catch (e) {
+      showSnackBar(context: context, content: e.toString());
+    }
+  }
+
+  void sendGIFMessage({
+    required BuildContext context,
+    required String gifUrl,
+    required String receiverUserId,
+    required UserModel senderUser,
+    //required UserModel receiverUserId,
+  }) async {
+    try {
+      var timeSent = DateTime.now();
+      UserModel recieverUserData;
+      var userDataMap =
+          await firestore.collection('users').doc(receiverUserId).get();
+
+      recieverUserData = UserModel.fromMap(userDataMap.data()!);
+
+      var messageId = const Uuid().v1();
+
+      _saveDataToContactSubcollection(
+        senderUser,
+        recieverUserData,
+        '👾 GIF',
+        timeSent,
+        receiverUserId,
+      );
+
+      _saveMessageToMessageSubcollection(
+        receiverUserId: receiverUserId,
+        text: gifUrl,
+        timeSent: timeSent,
+        messageId: messageId,
+        username: senderUser.name,
+        receiverUsername: recieverUserData.name,
+        messageType: MessageEnum.gif,
       );
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
