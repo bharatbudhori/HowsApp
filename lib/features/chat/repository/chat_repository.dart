@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:howsapp/common/enums/message_enum.dart';
+import 'package:howsapp/common/providers/message_reply_provider.dart';
 import 'package:howsapp/common/repository/common_firebase_storage_repository.dart';
 import 'package:howsapp/common/utils/utils.dart';
 import 'package:howsapp/models/chat_contact.dart';
@@ -129,6 +130,9 @@ class ChatRepository {
     required String username,
     required String receiverUsername,
     required MessageEnum messageType,
+    required MessageReply? messageReply,
+    required String senderUserName,
+    required String receiverUserName,
   }) async {
     final message = Message(
       senderId: auth.currentUser!.uid,
@@ -138,6 +142,14 @@ class ChatRepository {
       timeSent: timeSent,
       messageId: messageId,
       isSeen: false,
+      repliedMessage: messageReply == null ? '' : messageReply.message,
+      repliedTo: messageReply == null
+          ? ''
+          : messageReply.isMe
+              ? senderUserName
+              : receiverUserName,
+      repliedMessageType:
+          messageReply == null ? MessageEnum.text : messageReply.messageEnum,
     );
 
     //users->senderId->receiverId->messages->messageId->store mesasge
@@ -170,7 +182,7 @@ class ChatRepository {
     required String text,
     required String receiverUserId,
     required UserModel senderUser,
-    //required UserModel receiverUserId,
+    required MessageReply? messageReply,
   }) async {
     try {
       var timeSent = DateTime.now();
@@ -198,6 +210,9 @@ class ChatRepository {
         username: senderUser.name,
         receiverUsername: recieverUserData.name,
         messageType: MessageEnum.text,
+        messageReply: messageReply,
+        receiverUserName: recieverUserData.name,
+        senderUserName: senderUser.name,
       );
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
@@ -211,6 +226,7 @@ class ChatRepository {
     required UserModel senderUserData,
     required ProviderRef ref,
     required MessageEnum messageEnum,
+    required MessageReply? messageReply,
   }) async {
     try {
       var timeSent = DateTime.now();
@@ -264,6 +280,9 @@ class ChatRepository {
         username: senderUserData.name,
         receiverUsername: recieverUserData.name,
         messageType: messageEnum,
+        messageReply: messageReply,
+        receiverUserName: recieverUserData.name,
+        senderUserName: senderUserData.name,
       );
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
@@ -275,6 +294,7 @@ class ChatRepository {
     required String gifUrl,
     required String receiverUserId,
     required UserModel senderUser,
+    required MessageReply? messageReply,
     //required UserModel receiverUserId,
   }) async {
     try {
@@ -303,6 +323,9 @@ class ChatRepository {
         username: senderUser.name,
         receiverUsername: recieverUserData.name,
         messageType: MessageEnum.gif,
+        messageReply: messageReply,
+        receiverUserName: recieverUserData.name,
+        senderUserName: senderUser.name,
       );
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
