@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:howsapp/features/select_contacts/screens/select_contact_screen.dart';
 import 'package:howsapp/features/chat/screens/mobile_chat_screen.dart';
+import 'package:howsapp/features/status/screens/confirm_status_screen.dart';
 
 import 'common/widgets/error.dart';
 import 'features/auth/screens/login_screen.dart';
@@ -40,6 +43,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         builder: (context) => MobileChatScreen(
           name: name,
           uid: uid,
+        ),
+      );
+
+    case ConfirmStatusScreen.routeName:
+      final File file = settings.arguments as File;
+      return MaterialPageRoute(
+        builder: (context) => ConfirmStatusScreen(
+          file: file,
         ),
       );
 
