@@ -151,7 +151,6 @@ class ChatRepository {
       repliedMessageType:
           messageReply == null ? MessageEnum.text : messageReply.messageEnum,
     );
-
     //users->senderId->receiverId->messages->messageId->store mesasge
     await firestore
         .collection('users')
