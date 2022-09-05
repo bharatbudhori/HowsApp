@@ -61,10 +61,13 @@ class StatusRepository {
             .collection('users')
             .where(
               'phoneNumber',
-              isEqualTo: contacts[i].phones[0].number.replaceAll(' ', ''),
+              isEqualTo: contacts[i].phones[0].number.replaceAll(
+                    ' ',
+                    '',
+                  ),
             )
             .get();
-
+        print(userDataFirebase.docs.isNotEmpty);
         if (userDataFirebase.docs.isNotEmpty) {
           var userData = UserModel.fromMap(userDataFirebase.docs[0].data());
           uidWhoCanSee.add(userData.uid);
@@ -95,12 +98,12 @@ class StatusRepository {
       Status status = Status(
         uid: uid,
         username: username,
-        profilePic: profilePic,
-        photoUrl: statusImageUrls,
         phoneNumber: phoneNumber,
-        whoCanSee: uidWhoCanSee,
+        photoUrl: statusImageUrls,
         createdAt: DateTime.now(),
+        profilePic: profilePic,
         statusId: statusId,
+        whoCanSee: uidWhoCanSee,
       );
 
       await firestore.collection('status').doc(statusId).set(status.toMap());
@@ -145,6 +148,7 @@ class StatusRepository {
       if (kDebugMode) print(e);
       showSnackBar(context: context, content: e.toString());
     }
+    //print(statusData.length);
     return statusData;
   }
 }

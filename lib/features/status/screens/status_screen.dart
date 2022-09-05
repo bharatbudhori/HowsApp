@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:howsapp/common/widgets/loader.dart';
 import 'package:howsapp/models/status_model.dart';
-import 'package:story_view/controller/story_controller.dart';
 import 'package:story_view/story_view.dart';
 
 class StatusScreen extends StatefulWidget {

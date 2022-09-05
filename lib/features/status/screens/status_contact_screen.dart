@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:howsapp/colors.dart';
 import 'package:howsapp/common/widgets/loader.dart';
 import 'package:howsapp/features/status/controller/status_controller.dart';
+import 'package:howsapp/features/status/screens/status_screen.dart';
 import 'package:howsapp/models/status_model.dart';
 
 class StatusContactScreen extends ConsumerWidget {
@@ -16,7 +17,17 @@ class StatusContactScreen extends ConsumerWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Loader();
         }
-
+        if (snapshot.data!.isEmpty) {
+          return const Center(
+            child: Text(
+              'No Status',
+              style: TextStyle(
+                color: blackColor,
+                fontSize: 20,
+              ),
+            ),
+          );
+        }
         return ListView.builder(
           itemCount: snapshot.data!.length,
           itemBuilder: (context, index) {
@@ -27,7 +38,7 @@ class StatusContactScreen extends ConsumerWidget {
                   onTap: () {
                     Navigator.pushNamed(
                       context,
-                      '/status-screen',
+                      StatusScreen.routeName,
                       arguments: statusData,
                     );
                   },
