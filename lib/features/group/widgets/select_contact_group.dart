@@ -5,6 +5,8 @@ import 'package:howsapp/common/widgets/error.dart';
 import 'package:howsapp/common/widgets/loader.dart';
 import 'package:howsapp/features/select_contacts/controller/select_contact_controller.dart';
 
+final selectedGroupContact = StateProvider<List<Contact>>((ref) => []);
+
 class SelectContactGroup extends ConsumerStatefulWidget {
   const SelectContactGroup({super.key});
 
@@ -22,6 +24,7 @@ class _SelectContactGroupState extends ConsumerState<SelectContactGroup> {
       selectedContactsIndex.add(index);
     }
     setState(() {});
+    ref.read(selectedGroupContact.state).update((state) => [...state, contact]);
   }
 
   @override

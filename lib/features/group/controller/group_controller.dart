@@ -5,6 +5,14 @@ import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:howsapp/features/group/repository/group_repository.dart';
 
+final groupControllerProvider = Provider((ref) {
+  final groupRepository = ref.read(groupRepositoryProvider);
+  return GroupController(
+    groupRepository: groupRepository,
+    ref: ref,
+  );
+});
+
 class GroupController {
   final GroupRepository groupRepository;
   final ProviderRef ref;

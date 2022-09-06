@@ -10,6 +10,14 @@ import 'package:howsapp/common/utils/utils.dart';
 import 'package:howsapp/models/group.dart' as model;
 import 'package:uuid/uuid.dart';
 
+final groupRepositoryProvider = Provider(
+  (ref) => GroupRepository(
+    firestore: FirebaseFirestore.instance,
+    auth: FirebaseAuth.instance,
+    ref: ref,
+  ),
+);
+
 class GroupRepository {
   final FirebaseFirestore firestore;
   final FirebaseAuth auth;
@@ -41,13 +49,13 @@ class GroupRepository {
             )
             .get();
 
-        if (userCollection.docs[0].exists) {
+        if (userCollection.docs.isEmpty && userCollection.docs[0].exists) {
           uids.add(userCollection.docs[0].data()['uid']);
         }
 
         var groupId = const Uuid().v1();
 
-        String profilePicUrl = await ref
+        String profileUrl = await ref
             .read(commonFirebaseStorageRepositoryProvider)
             .storeFiletoFirebase(
               'group/$groupId',
@@ -58,7 +66,12 @@ class GroupRepository {
           senderId: auth.currentUser!.uid,
           name: name,
           groupId: groupId,
+          lastMessage: '',
+          groupPic: profileUrl,
+          membersUid: [auth.currentUser!.uid, ...uids],
         );
+
+        await firestore.collection('groups').doc(groupId).set(group.toMap());
       }
     } catch (e) {
       showSnackBar(context: context, content: e.toString());

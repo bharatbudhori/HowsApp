@@ -32,6 +32,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
             image!,
             ref.read(selectedGroupContact),
           );
+      ref.read(selectedGroupContact.state).update((state) => []);
       Navigator.pop(context);
     }
   }

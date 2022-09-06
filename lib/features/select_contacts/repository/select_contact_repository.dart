@@ -52,11 +52,11 @@ class SelectContactRepository {
             },
           );
         }
-        if (!isFound) {
-          showSnackBar(
-              context: context,
-              content: 'This number does not exist on this app.');
-        }
+      }
+      if (!isFound) {
+        showSnackBar(
+            context: context,
+            content: 'This number does not exist on this app.');
       }
     } catch (e) {
       showSnackBar(context: context, content: e.toString());

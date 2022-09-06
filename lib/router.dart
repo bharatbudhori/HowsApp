@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:howsapp/features/group/screens/create_group_screen.dart';
 import 'package:howsapp/features/select_contacts/screens/select_contact_screen.dart';
 import 'package:howsapp/features/chat/screens/mobile_chat_screen.dart';
 import 'package:howsapp/features/status/screens/confirm_status_screen.dart';
@@ -61,6 +62,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         builder: (context) => StatusScreen(
           status: status,
         ),
+      );
+
+    case CreateGroupScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const CreateGroupScreen(),
       );
 
     default:
