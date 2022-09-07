@@ -49,7 +49,7 @@ class GroupRepository {
             )
             .get();
 
-        if (userCollection.docs.isEmpty && userCollection.docs[0].exists) {
+        if (userCollection.docs.isNotEmpty && userCollection.docs[0].exists) {
           uids.add(userCollection.docs[0].data()['uid']);
         }
 
@@ -69,6 +69,7 @@ class GroupRepository {
           lastMessage: '',
           groupPic: profileUrl,
           membersUid: [auth.currentUser!.uid, ...uids],
+          timeSent: DateTime.now(),
         );
 
         await firestore.collection('groups').doc(groupId).set(group.toMap());

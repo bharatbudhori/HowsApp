@@ -26,9 +26,7 @@ void main() async {
       ),
     );
   } else {
-    await Firebase.initializeApp(
-        //options: DefaultFirebaseOptions.currentPlatform,
-        );
+    await Firebase.initializeApp();
   }
   runApp(
     const ProviderScope(

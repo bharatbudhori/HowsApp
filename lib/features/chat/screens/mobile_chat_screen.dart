@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:howsapp/colors.dart';
 import 'package:howsapp/common/widgets/loader.dart';
 import 'package:howsapp/features/auth/controller/auth_controller.dart';
+import 'package:howsapp/features/call/controller/call_controller.dart';
 import 'package:howsapp/features/chat/widgets/bottom_chat_field.dart';
 import 'package:howsapp/features/chat/widgets/chat_list.dart';
 
@@ -13,12 +14,24 @@ class MobileChatScreen extends ConsumerWidget {
   final String name;
   final String uid;
   final bool isGroupChat;
+  final String profilePic;
   const MobileChatScreen({
     Key? key,
     required this.name,
     required this.uid,
     required this.isGroupChat,
+    required this.profilePic,
   }) : super(key: key);
+
+  void makeCall(WidgetRef ref, BuildContext context) {
+    ref.read(callControllerProvider).makeCall(
+          context,
+          name,
+          uid,
+          profilePic,
+          isGroupChat,
+        );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,7 +62,7 @@ class MobileChatScreen extends ConsumerWidget {
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => makeCall(ref, context),
             icon: const Icon(Icons.video_call),
           ),
           IconButton(
@@ -67,12 +80,12 @@ class MobileChatScreen extends ConsumerWidget {
           Expanded(
             child: ChatList(
               recieverUserId: uid,
-              isGroupChat = isGroupChat,
+              isGroupChat: isGroupChat,
             ),
           ),
           BottomChatField(
             receiverUserId: uid,
-            isGroupChat = isGroupChat,
+            isGroupChat: isGroupChat,
           ),
         ],
       ),

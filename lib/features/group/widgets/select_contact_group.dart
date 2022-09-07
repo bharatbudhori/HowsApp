@@ -19,7 +19,7 @@ class _SelectContactGroupState extends ConsumerState<SelectContactGroup> {
 
   void selectContact(int index, Contact contact) {
     if (selectedContactsIndex.contains(index)) {
-      selectedContactsIndex.remove(index);
+      selectedContactsIndex.removeAt(index);
     } else {
       selectedContactsIndex.add(index);
     }

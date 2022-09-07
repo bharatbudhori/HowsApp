@@ -52,8 +52,8 @@ class _ChatListState extends ConsumerState<ChatList> {
     return StreamBuilder<List<Message>>(
         stream: widget.isGroupChat
             ? ref
-                .watch(chatControllerProvider)
-                .getGroupChatMessages(widget.recieverUserId)
+                .read(chatControllerProvider)
+                .groupChatStream(widget.recieverUserId)
             : ref
                 .read(chatControllerProvider)
                 .chatStream(widget.recieverUserId),

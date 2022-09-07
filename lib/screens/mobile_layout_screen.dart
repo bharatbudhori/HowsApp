@@ -80,12 +80,10 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
               itemBuilder: (context) => [
                 PopupMenuItem(
                   child: const Text('Create Group'),
-                  onTap: () {
-                    Future(
-                      () => Navigator.pushNamed(
-                          context, CreateGroupScreen.routeName),
-                    );
-                  },
+                  onTap: () => Future(
+                    () => Navigator.pushNamed(
+                        context, CreateGroupScreen.routeName),
+                  ),
                 ),
               ],
             ),
