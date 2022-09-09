@@ -4,6 +4,7 @@ import 'package:howsapp/colors.dart';
 import 'package:howsapp/common/widgets/loader.dart';
 import 'package:howsapp/features/auth/controller/auth_controller.dart';
 import 'package:howsapp/features/call/controller/call_controller.dart';
+import 'package:howsapp/features/call/screens/call_pickup_screen.dart';
 import 'package:howsapp/features/chat/widgets/bottom_chat_field.dart';
 import 'package:howsapp/features/chat/widgets/chat_list.dart';
 
@@ -35,59 +36,61 @@ class MobileChatScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        title: isGroupChat
-            ? Text(name)
-            : StreamBuilder<UserModel>(
-                stream: ref.read(authControllerProvider).userDataById(uid),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Loader();
-                  }
-                  return Column(
-                    children: [
-                      Text(name),
-                      Text(
-                        snapshot.data!.isOnline ? 'Online' : 'Offline',
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.normal,
+    return CallPickupScreen(
+      scaffold: Scaffold(
+        appBar: AppBar(
+          backgroundColor: appBarColor,
+          title: isGroupChat
+              ? Text(name)
+              : StreamBuilder<UserModel>(
+                  stream: ref.read(authControllerProvider).userDataById(uid),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Loader();
+                    }
+                    return Column(
+                      children: [
+                        Text(name),
+                        Text(
+                          snapshot.data!.isOnline ? 'Online' : 'Offline',
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                }),
-        centerTitle: false,
-        actions: [
-          IconButton(
-            onPressed: () => makeCall(ref, context),
-            icon: const Icon(Icons.video_call),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.call),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ChatList(
-              recieverUserId: uid,
+                      ],
+                    );
+                  }),
+          centerTitle: false,
+          actions: [
+            IconButton(
+              onPressed: () => makeCall(ref, context),
+              icon: const Icon(Icons.video_call),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.call),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.more_vert),
+            ),
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ChatList(
+                recieverUserId: uid,
+                isGroupChat: isGroupChat,
+              ),
+            ),
+            BottomChatField(
+              receiverUserId: uid,
               isGroupChat: isGroupChat,
             ),
-          ),
-          BottomChatField(
-            receiverUserId: uid,
-            isGroupChat: isGroupChat,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

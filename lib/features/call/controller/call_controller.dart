@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -27,6 +28,8 @@ class CallController {
     required this.ref,
     required this.auth,
   });
+
+  Stream<DocumentSnapshot> get callStream => callRepository.callStream;
 
   void makeCall(
     BuildContext context,
@@ -65,5 +68,13 @@ class CallController {
         context,
       );
     });
+  }
+
+  void endCall(
+    String calllerId,
+    String receiverId,
+    BuildContext context,
+  ) {
+    callRepository.endCall(calllerId, receiverId, context);
   }
 }
