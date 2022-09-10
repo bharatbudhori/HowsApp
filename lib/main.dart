@@ -6,7 +6,7 @@ import 'package:howsapp/colors.dart';
 import 'package:howsapp/common/widgets/error.dart';
 import 'package:howsapp/features/auth/controller/auth_controller.dart';
 import 'package:howsapp/router.dart';
-import 'package:howsapp/screens/mobile_layout_screen.dart';
+import 'package:howsapp/mobile_layout_screen.dart';
 
 import 'common/widgets/loader.dart';
 import 'features/landing/screens/landing_screen.dart';

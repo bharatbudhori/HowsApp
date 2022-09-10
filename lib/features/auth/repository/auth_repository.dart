@@ -9,7 +9,7 @@ import 'package:howsapp/common/repository/common_firebase_storage_repository.dar
 import 'package:howsapp/common/utils/utils.dart';
 import 'package:howsapp/features/auth/screens/user_information_screen.dart';
 import 'package:howsapp/models/user_model.dart';
-import 'package:howsapp/screens/mobile_layout_screen.dart';
+import 'package:howsapp/mobile_layout_screen.dart';
 
 import '../screens/otp_screen.dart';
 
