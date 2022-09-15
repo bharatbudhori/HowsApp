@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:howsapp/colors.dart';
+import 'package:howsapp/common/utils/colors.dart';
 import 'package:howsapp/common/utils/utils.dart';
 import 'package:howsapp/features/group/controller/group_controller.dart';
 import 'package:howsapp/features/group/widgets/select_contact_group.dart';

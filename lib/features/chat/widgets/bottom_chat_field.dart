@@ -4,7 +4,7 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sound/flutter_sound.dart';
-import 'package:howsapp/colors.dart';
+import 'package:howsapp/common/utils/colors.dart';
 import 'package:howsapp/common/enums/message_enum.dart';
 import 'package:howsapp/common/providers/message_reply_provider.dart';
 import 'package:howsapp/common/utils/utils.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:howsapp/colors.dart';
+import 'package:howsapp/common/utils/colors.dart';
 import 'package:howsapp/common/widgets/custom_button.dart';
 
 import '../../auth/screens/login_screen.dart';

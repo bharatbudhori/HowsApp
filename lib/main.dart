@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:howsapp/colors.dart';
+import 'package:howsapp/common/utils/colors.dart';
 import 'package:howsapp/common/widgets/error.dart';
 import 'package:howsapp/features/auth/controller/auth_controller.dart';
 import 'package:howsapp/router.dart';

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:howsapp/colors.dart';
+import 'package:howsapp/common/utils/colors.dart';
 import 'package:howsapp/features/status/controller/status_controller.dart';
 
 class ConfirmStatusScreen extends ConsumerWidget {

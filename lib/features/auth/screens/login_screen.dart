@@ -1,7 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:howsapp/colors.dart';
+import 'package:howsapp/common/utils/colors.dart';
 import 'package:howsapp/common/utils/utils.dart';
 import 'package:howsapp/common/widgets/custom_button.dart';
 import 'package:howsapp/features/auth/controller/auth_controller.dart';
@@ -33,6 +33,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           country = _country;
         });
       },
+
       showPhoneCode: true,
     );
   }

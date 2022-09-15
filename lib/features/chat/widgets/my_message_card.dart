@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:howsapp/colors.dart';
+import 'package:howsapp/common/utils/colors.dart';
 import 'package:howsapp/common/enums/message_enum.dart';
 import 'package:howsapp/features/chat/widgets/display_text_image_gif.dart';
 import 'package:swipe_to/swipe_to.dart';

@@ -41,7 +41,9 @@ class Status {
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
       profilePic: map['profilePic'] ?? '',
       statusId: map['statusId'] ?? '',
-      whoCanSee: List<String>.from(map['whoCanSee']),
+      whoCanSee: List<String>.from(
+        map['whoCanSee'],
+      ),
     );
   }
 }

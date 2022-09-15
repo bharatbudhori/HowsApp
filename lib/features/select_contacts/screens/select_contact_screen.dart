@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:howsapp/colors.dart';
+import 'package:howsapp/common/utils/colors.dart';
 import 'package:howsapp/common/widgets/error.dart';
 import 'package:howsapp/common/widgets/loader.dart';
 import 'package:howsapp/features/select_contacts/controller/select_contact_controller.dart';

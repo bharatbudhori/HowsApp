@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:howsapp/colors.dart';
+import 'package:howsapp/common/utils/colors.dart';
 import 'package:howsapp/common/widgets/loader.dart';
 import 'package:howsapp/features/status/controller/status_controller.dart';
 import 'package:howsapp/features/status/screens/status_screen.dart';
